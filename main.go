@@ -20,6 +20,7 @@ type matrices struct {
 	visitedMatrix [][]int
 }
 
+// initial 2D Array(inputMatrix) according set parameters(height, width)
 func (matrix *matrices) initialInputMatrix(height, width int) {
 	matrix.inputMatrix = make([][]int, height)
 
@@ -28,6 +29,7 @@ func (matrix *matrices) initialInputMatrix(height, width int) {
 	}
 }
 
+// initial 2D Array(visitedMatrix) according set parameters(height, width)
 func (matrix *matrices) initialVisitedMatrix(height, width int) {
 	matrix.visitedMatrix = make([][]int, height)
 
@@ -36,6 +38,7 @@ func (matrix *matrices) initialVisitedMatrix(height, width int) {
 	}
 }
 
+// fills the 2D Array(inputMatrix) with random numbers
 func (matrix *matrices) insertRandValue(colour int) {
 	for _, row := range matrix.inputMatrix {
 		for k := range row {
@@ -44,6 +47,7 @@ func (matrix *matrices) insertRandValue(colour int) {
 	}
 }
 
+// preparing or fills 2D Array(inputMatrix) for markering visits
 func (matrix *matrices) fillUpEmptyMatrix(colour int) {
 	for _, row := range matrix.visitedMatrix {
 		for k := range row {
@@ -52,6 +56,7 @@ func (matrix *matrices) fillUpEmptyMatrix(colour int) {
 	}
 }
 
+// print 2D Array(inputMatrix + maxResult) with lighted result
 func (matrix *matrices) printMatrix(maxResult []coordinate) {
 	for i := 0; i < len(matrix.inputMatrix); i++ {
 		var strLine strings.Builder
@@ -106,6 +111,7 @@ func main() {
 	fmt.Println(maxResult)
 }
 
+// search for a match for each color
 func searchMatches(height, width, colour int, matrix matrices) []coordinate {
 	var maxResult = make([]coordinate, 0, height*width)
 	for i := 0; i < colour; i++ {
@@ -132,6 +138,7 @@ func searchMatches(height, width, colour int, matrix matrices) []coordinate {
 	return maxResult
 }
 
+// counts the same colors and returns the maximum stack
 func deepSearch(iC, iR, i int, tempResult []coordinate, matrix matrices) []coordinate {
 	if iC < 0 || iC >= len(matrix.inputMatrix) || iR < 0 || iR >= len(matrix.inputMatrix[0]) { //out of range
 		return tempResult
